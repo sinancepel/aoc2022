@@ -25,13 +25,7 @@ fn parse_args() -> Vec<(Region, Region)> {
         eprintln!("{} wrong number of arguments: expected 1, got {}.", "Error", args.len());
         std::process::exit(1);
     }
-    let data = match fs::read_to_string(&args[0]) {
-        Ok(v) => v,
-        Err(_) => {
-            eprintln!("bad filename {}", &args[0]);
-            std::process::exit(1)
-        }
-    };
+    let data = fs::read_to_string(&args[0]).unwrap();
     let mut regions: Vec<(Region, Region)> = vec![];
     for line in data.split("\n") {
         println!("here");
